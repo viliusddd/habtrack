@@ -1,19 +1,34 @@
 <script setup>
 import { RouterLink, RouterView } from 'vue-router'
-import HelloWorld from './components/HelloWorld.vue'
+// import HelloWorld from './components/HelloWorld.vue'
 </script>
 
 <template>
   <header>
-    <img alt="Vue logo" class="logo" src="@/assets/logo.svg" width="125" height="125" />
-
+    <p class="logo">habtrack</p>
     <div class="wrapper">
-      <HelloWorld msg="You did it!" />
-
-      <nav>
-        <RouterLink to="/">Home</RouterLink>
-        <RouterLink to="/about">About</RouterLink>
-      </nav>
+      <div class="days-container">
+        <div class="day">
+          <div class="day__date">7</div>
+          <div class="day__week-day">SUN</div>
+        </div>
+      </div>
+      <div class="habbits-container">
+        <div class="habbit">
+          <div class="habbit__title">
+            <div class="habbit__color"></div>
+            <div class="habbit__name"></div>
+          </div>
+          <div class="habbit__labels"></div>
+        </div>
+        <div class="bottom-container">
+          <div class="new-habbit">
+            <div class="new-habbit__btn"></div>
+            <div class="new-habbit__name"></div>
+          </div>
+          <div class="message-panel"></div>
+        </div>
+      </div>
     </div>
   </header>
 
@@ -27,15 +42,14 @@ header {
 }
 
 .logo {
-  display: block;
-  margin: 0 auto 2rem;
+  font-size: 3ch;
 }
 
 nav {
   width: 100%;
   font-size: 12px;
   text-align: center;
-  margin-top: 2rem;
+  margin-top: 1rem;
 }
 
 nav a.router-link-exact-active {
