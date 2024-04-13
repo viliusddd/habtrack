@@ -1,12 +1,13 @@
 <script setup>
 import { RouterLink, RouterView } from 'vue-router'
-import { ref } from 'vue'
+import { useHabbitsStore } from './stores/HabbitsStore'
 import HabbitPanel from './components/HabbitPanel.vue'
+import { ref } from 'vue'
+import { storeToRefs } from 'pinia'
 
-const habbits = ref([
-  { id: 1, name: 'wash my bed', color: 'red', marks: [true, false, false, false, false] },
-  { id: 2, name: 'make my teeth', color: 'yellow', marks: [true, true, false, true, false] }
-])
+const habbitsStore = useHabbitsStore()
+habbitsStore.fill()
+// habbitsStore.add(})
 </script>
 
 <template>
@@ -37,11 +38,10 @@ const habbits = ref([
       </div>
       <div class="habbits-container">
         <HabbitPanel
-          v-for="habbit in habbits"
-          :id="habbit.id"
+          v-for="habbit in habbitsStore.habbits"
           :name="habbit.name"
           :color="habbit.color"
-          :marks="habbit.marks"
+          :marks="habbit.days.map(day => day.isMarked)"
           :key="habbit.id"
         />
         <div class="bottom-container">

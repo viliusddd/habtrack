@@ -6,7 +6,6 @@ const props = defineProps({
   color: String,
   marks: Array
 })
-console.log(props.marks)
 
 const icons = {
   true: 'v',
