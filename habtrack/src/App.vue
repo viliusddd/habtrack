@@ -1,6 +1,12 @@
 <script setup>
 import { RouterLink, RouterView } from 'vue-router'
-// import HelloWorld from './components/HelloWorld.vue'
+import { ref } from 'vue'
+import HabbitPanel from './components/HabbitPanel.vue'
+
+const habbits = ref([
+  { id: 1, name: 'wash my bed', color: 'red', marks: [true, false, false, false, false] },
+  { id: 2, name: 'make my teeth', color: 'yellow', marks: [true, true, false, true, false] }
+])
 </script>
 
 <template>
@@ -30,32 +36,14 @@ import { RouterLink, RouterView } from 'vue-router'
         </div>
       </div>
       <div class="habbits-container">
-        <div class="habbit">
-          <div class="habbit__title">
-            <div class="habbit__color">o</div>
-            <div class="habbit__name">Make the bed</div>
-          </div>
-          <div class="habbit__cells">
-            <dir class="habbit__cell">x</dir>
-            <dir class="habbit__cell">x</dir>
-            <dir class="habbit__cell">x</dir>
-            <dir class="habbit__cell">x</dir>
-            <dir class="habbit__cell">x</dir>
-          </div>
-        </div>
-        <div class="habbit">
-          <div class="habbit__title">
-            <div class="habbit__color">o</div>
-            <div class="habbit__name">Brush my teeth</div>
-          </div>
-          <div class="habbit__cells">
-            <dir class="habbit__cell success">v</dir>
-            <dir class="habbit__cell">x</dir>
-            <dir class="habbit__cell">x</dir>
-            <dir class="habbit__cell">x</dir>
-            <dir class="habbit__cell">x</dir>
-          </div>
-        </div>
+        <HabbitPanel
+          v-for="habbit in habbits"
+          :id="habbit.id"
+          :name="habbit.name"
+          :color="habbit.color"
+          :marks="habbit.marks"
+          :key="habbit.id"
+        />
         <div class="bottom-container">
           <div class="new-habbit">
             <div class="new-habbit__btn">+</div>
@@ -107,47 +95,6 @@ import { RouterLink, RouterView } from 'vue-router'
   /* border: 1px solid gray; */
   row-gap: 1px;
 }
-.habbit {
-  display: flex;
-  align-items: center;
-  flex: 1;
-  justify-content: space-between;
-  border: 1px solid gray;
-}
-.habbit__title {
-  display: flex;
-  /* border: 1px solid blue; */
-}
-
-.habbit__color {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 20px;
-  flex-shrink: 0;
-}
-.habbit__name {
-  display: flex;
-}
-
-.habbit__cells {
-  display: grid;
-  grid-template-columns: repeat(5, 1fr);
-  /* border: 1px solid green; */
-}
-.habbit__cell {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 40px;
-  height: 40px;
-  /* border: 1px solid yellow; */
-}
-
-.success {
-  color: greenyellow;
-}
-
 .bottom-container {
   display: flex;
   /* border: 1px solid yellow; */
