@@ -2,6 +2,7 @@
 import { RouterLink, RouterView } from 'vue-router'
 import { useHabbitsStore } from './stores/HabbitsStore'
 import HabbitPanel from './components/HabbitPanel.vue'
+import NewHabbitPanel from './components/NewHabbitPanel.vue'
 import { ref } from 'vue'
 import { storeToRefs } from 'pinia'
 
@@ -45,10 +46,7 @@ habbitsStore.fill()
           :key="habbit.id"
         />
         <div class="bottom-container">
-          <div class="new-habbit">
-            <div class="new-habbit__btn">+</div>
-            <div class="new-habbit__name">New habbit</div>
-          </div>
+          <NewHabbitPanel />
           <div class="message-panel">Add new habbit by pressing +</div>
         </div>
       </div>
@@ -99,22 +97,6 @@ habbitsStore.fill()
   display: flex;
   /* border: 1px solid yellow; */
   height: 40px;
-}
-.new-habbit {
-  display: flex;
-}
-.new-habbit__btn {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 20px;
-  flex-shrink: 0;
-  /* border: 1px solid yellow; */
-}
-.new-habbit__name {
-  display: flex;
-  align-items: center;
-  width: 130px;
 }
 .message-panel {
   display: flex;
