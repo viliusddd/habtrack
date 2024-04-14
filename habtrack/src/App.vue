@@ -3,6 +3,7 @@ import { RouterLink, RouterView } from 'vue-router'
 import { useHabbitsStore } from './stores/HabbitsStore'
 import HabbitPanel from './components/HabbitPanel.vue'
 import NewHabbitPanel from './components/NewHabbitPanel.vue'
+import DaysPanel from './components/DaysPanel.vue'
 
 const habbitsStore = useHabbitsStore()
 habbitsStore.fill()
@@ -13,28 +14,9 @@ habbitsStore.fill()
     <p class="logo">habtrack</p>
     <div class="wrapper">
       <div class="days-container">
-        <div class="day">
-          <div class="day__date">7</div>
-          <div class="day__week-day">sun</div>
-        </div>
-        <div class="day">
-          <div class="day__date">6</div>
-          <div class="day__week-day">sat</div>
-        </div>
-        <div class="day">
-          <div class="day__date">5</div>
-          <div class="day__week-day">fri</div>
-        </div>
-        <div class="day">
-          <div class="day__date">4</div>
-          <div class="day__week-day">thu</div>
-        </div>
-        <div class="day">
-          <div class="day__date">3</div>
-          <div class="day__week-day">wed</div>
-        </div>
+        <DaysPanel :days="5" />
       </div>
-      <div v-for="habbit in habbitsStore.habbits" :key="habbit.id" class="habbits-container">
+      <div class="habbits-container" v-for="habbit in habbitsStore.habbits" :key="habbit.id">
         <HabbitPanel :habbit />
       </div>
       <div class="bottom-container">
@@ -58,25 +40,7 @@ habbitsStore.fill()
 }
 .days-container {
   display: flex;
-  /* grid-template-columns: repeat(5, 1fr); */
-  /* border: 1px solid gray; */
-  /* flex-basis: auto; */
   align-self: flex-end;
-}
-.day {
-  width: 40px;
-  height: 40px;
-  /* border: 1px solid gray; */
-}
-.day__date {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-.day__week-day {
-  display: flex;
-  justify-content: center;
-  align-items: center;
 }
 .habbits-container {
   display: flex;

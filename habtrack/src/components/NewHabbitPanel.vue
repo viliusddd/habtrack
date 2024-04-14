@@ -41,7 +41,7 @@ function submitNewHabbit() {
   </div>
 </template>
 
-<style>
+<style scoped>
 .new-habbit {
   display: flex;
 }
