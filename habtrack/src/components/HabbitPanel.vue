@@ -1,11 +1,21 @@
 <script setup>
 import { defineProps, ref } from 'vue'
+import { useHabbitsStore } from '@/stores/HabbitsStore'
+
+const habbitsStore = useHabbitsStore()
+
 const props = defineProps({
-  id: Number,
-  name: String,
-  color: String,
-  marks: Array
+  habbit: Object
 })
+
+const inputColor = ref('')
+inputColor.value = props.habbit.color
+
+function updateColor() {
+  for (let habbit of habbitsStore.habbits) {
+    if (habbit.id === props.habbit.id) habbit.color = inputColor
+  }
+}
 
 const icons = {
   true: 'v',
@@ -16,12 +26,12 @@ const icons = {
 <template>
   <div class="habbit">
     <div class="habbit__title">
-      <div class="habbit__color">o</div>
-      <div class="habbit__name">{{ name }}</div>
+      <input class="habbit__color" @input="updateColor" type="color" v-model="inputColor" />
+      <div class="habbit__name">{{ habbit.name }}</div>
     </div>
     <div class="habbit__cells">
       <div
-        v-for="(mark, index) in marks"
+        v-for="(mark, index) in habbit.days.map(day => day.isMarked)"
         :key="`id-${index}`"
         :class="mark == true ? 'marked' : ''"
         class="habbit__cell"
@@ -42,21 +52,28 @@ const icons = {
 }
 .habbit__title {
   display: flex;
-  /* border: 1px solid blue; */
 }
-
-.habbit__color {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 20px;
-  flex-shrink: 0;
+input[type='color'] {
+  border: none;
+  padding: 0;
+  width: 15px;
+  background: transparent;
+  margin: 0 2px;
+}
+input[type='color']::-webkit-color-swatch {
+  border: 0;
+  border-radius: 50%;
+  height: 11px;
 }
 .habbit__name {
   display: flex;
-  color: v-bind(color);
+  justify-content: center;
+  align-items: center;
+  color: v-bind(inputColor);
 }
-
+.habbit__color {
+  cursor: pointer;
+}
 .habbit__cells {
   display: grid;
   grid-template-columns: repeat(5, 1fr);
@@ -72,6 +89,6 @@ const icons = {
 }
 
 .marked {
-  color: v-bind(color);
+  color: v-bind(inputColor);
 }
 </style>

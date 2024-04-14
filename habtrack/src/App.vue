@@ -34,18 +34,12 @@ habbitsStore.fill()
           <div class="day__week-day">wed</div>
         </div>
       </div>
-      <div class="habbits-container">
-        <HabbitPanel
-          v-for="habbit in habbitsStore.habbits"
-          :name="habbit.name"
-          :color="habbit.color"
-          :marks="habbit.days.map(day => day.isMarked)"
-          :key="habbit.id"
-        />
-        <div class="bottom-container">
-          <NewHabbitPanel />
-          <div class="message-panel">Add new habbit by pressing +</div>
-        </div>
+      <div v-for="habbit in habbitsStore.habbits" :key="habbit.id" class="habbits-container">
+        <HabbitPanel :habbit />
+      </div>
+      <div class="bottom-container">
+        <NewHabbitPanel />
+        <div class="message-panel">Add new habbit by pressing +</div>
       </div>
     </div>
   </header>

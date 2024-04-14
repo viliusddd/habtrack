@@ -11,7 +11,7 @@ const newHabbitTemplate = computed(
     return {
       id: habbitsStore.newId,
       name: inputValue.value,
-      color: 'gray',
+      color: '#808080',
       days: [
         { date: new Date().toLocaleDateString('lt'), isMarked: true, comment: 'test testijus' }
       ]
