@@ -14,7 +14,7 @@ habbitsStore.fill()
     <p class="logo">habtrack</p>
     <div class="wrapper">
       <div class="days-container">
-        <DaysPanel :days="5" />
+        <DaysPanel :days="habbitsStore.numOfDays" />
       </div>
       <div class="habbits-container" v-for="habbit in habbitsStore.habbits" :key="habbit.id">
         <HabbitPanel :habbit />
@@ -33,7 +33,6 @@ habbitsStore.fill()
 .wrapper {
   display: flex;
   flex-direction: column;
-  /* margin: 5px; */
 }
 .logo {
   font-size: 3ch;

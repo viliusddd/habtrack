@@ -5,6 +5,7 @@ export const useHabbitsStore = defineStore('HabbitsStore', () => {
   const habbits = ref([])
 
   const key = 'habbits'
+
   async function fill() {
     const storageVal = localStorage.getItem(key)
     if (storageVal) {
@@ -13,6 +14,7 @@ export const useHabbitsStore = defineStore('HabbitsStore', () => {
       localStorage.setItem(key, '')
     }
   }
+
   function add(data) {
     habbits.value.push(data)
     console.log(data)
@@ -35,5 +37,7 @@ export const useHabbitsStore = defineStore('HabbitsStore', () => {
     }
   })
 
-  return { habbits, add, fill, newId }
+  const numOfDays = ref(5)
+
+  return { habbits, add, fill, newId, numOfDays }
 })
