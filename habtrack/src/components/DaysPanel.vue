@@ -1,23 +1,16 @@
 <script setup>
-import { defineProps } from 'vue'
+import { useHabbitsStore } from '@/stores/HabbitsStore'
 
-defineProps({
-  days: Number
-})
-const todayDate = new Date()
+const habbitsStore = useHabbitsStore()
 
-const monthDay = num => todayDate.getDate() - num
-const weekDay = num => {
-  const prevDay = new Date()
-  prevDay.setDate(todayDate.getDate() - num)
-  return prevDay.toLocaleDateString('us', { weekday: 'short' })
-}
+const toWeekDay = dateObj => dateObj.toLocaleDateString('us', { weekday: 'short' })
+const toMonthDay = dateObj => dateObj.getDate()
 </script>
 
 <template>
-  <div class="day" v-for="(_, index) in days" :key="index">
-    <div class="day__week-day">{{ weekDay(index) }}</div>
-    <div class="day__date">{{ monthDay(index) }}</div>
+  <div class="day" v-for="(day, index) in habbitsStore.arrayOfDates" :key="index">
+    <div class="day__week-day">{{ toWeekDay(day) }}</div>
+    <div class="day__date">{{ toMonthDay(day) }}</div>
   </div>
 </template>
 <style scoped>

@@ -37,7 +37,29 @@ export const useHabbitsStore = defineStore('HabbitsStore', () => {
     }
   })
 
+  const getDateFromNum = num => {
+    const todayDate = new Date()
+    const prevDay = new Date()
+    prevDay.setDate(todayDate.getDate() - num)
+    return prevDay
+  }
+
   const numOfDays = ref(5)
 
-  return { habbits, add, fill, newId, numOfDays }
+  const arrayOfDates = computed(() => getDaysArray(getDateFromNum(numOfDays.value), new Date()))
+
+  /**
+   * @param {*} prevDay - the farthest day shown in app
+   * @param {*} today
+   * @return {Date[]} - array of Date obj (days) from the closest to farthest.
+   */
+  function getDaysArray(prevDay, today) {
+    const arr = []
+    for (let day = today; day >= prevDay; day.setDate(day.getDate() - 1)) {
+      arr.push(new Date(day))
+    }
+    return arr
+  }
+
+  return { habbits, add, fill, newId, numOfDays, arrayOfDates }
 })

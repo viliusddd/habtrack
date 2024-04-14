@@ -14,7 +14,7 @@ habbitsStore.fill()
     <p class="logo">habtrack</p>
     <div class="wrapper">
       <div class="days-container">
-        <DaysPanel :days="habbitsStore.numOfDays" />
+        <DaysPanel />
       </div>
       <div class="habbits-container" v-for="habbit in habbitsStore.habbits" :key="habbit.id">
         <HabbitPanel :habbit />
