@@ -17,10 +17,28 @@ function updateColor() {
   }
 }
 
-const icons = {
-  true: 'v',
-  false: 'x'
+const dates = props.habbit.days
+  .filter(day => day.date.length)
+  .map(day => new Date(day.date))
+  .map(day => new Date(day.setHours(0, 0, 0, 0)))
+  .map(day => day.valueOf())
+
+const daysList = ref([])
+for (let day of habbitsStore.arrayOfDates) {
+  day = new Date(day.setHours(0, 0, 0, 0))
+  day = day.valueOf()
+  // console.log(day, dates)
+
+  if (dates.includes(day)) {
+    // console.log('yes')
+    daysList.value.push(true)
+    // break
+  } else {
+    daysList.value.push(false)
+  }
 }
+
+console.log(daysList.value)
 </script>
 
 <template>
@@ -29,15 +47,9 @@ const icons = {
       <input class="habbit__color" @input="updateColor" type="color" v-model="inputColor" />
       <div class="habbit__name">{{ habbit.name }}</div>
     </div>
-    <div class="habbit__cells">
-      <div
-        v-for="(mark, index) in habbit.days.map(day => day.isMarked)"
-        :key="`id-${index}`"
-        :class="mark == true ? 'marked' : ''"
-        class="habbit__cell"
-      >
-        {{ icons[mark] }}
-      </div>
+    <div v-for="(day, index) in daysList" class="habbit__cells" :key="index">
+      <div v-if="day" class="habbit__cell marked">v</div>
+      <div v-else class="habbit__cell">x</div>
     </div>
   </div>
 </template>
@@ -85,6 +97,7 @@ input[type='color']::-webkit-color-swatch {
   align-items: center;
   width: 40px;
   height: 40px;
+  cursor: pointer;
   /* border: 1px solid yellow; */
 }
 
