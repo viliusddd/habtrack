@@ -3,12 +3,9 @@ import { RouterLink, RouterView } from 'vue-router'
 import { useHabbitsStore } from './stores/HabbitsStore'
 import HabbitPanel from './components/HabbitPanel.vue'
 import NewHabbitPanel from './components/NewHabbitPanel.vue'
-import { ref } from 'vue'
-import { storeToRefs } from 'pinia'
 
 const habbitsStore = useHabbitsStore()
 habbitsStore.fill()
-// habbitsStore.add(})
 </script>
 
 <template>

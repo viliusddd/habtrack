@@ -21,8 +21,6 @@ const newHabbitTemplate = computed(
 )
 
 function submitNewHabbit() {
-  console.log(inputValue.value)
-  console.log(newHabbitTemplate.value)
   habbitsStore.add(newHabbitTemplate.value)
   inputValue.value = ''
 }
