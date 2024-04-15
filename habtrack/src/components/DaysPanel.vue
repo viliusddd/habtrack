@@ -8,16 +8,44 @@ const toMonthDay = dateObj => dateObj.getDate()
 </script>
 
 <template>
-  <div class="day" v-for="(day, index) in habbitsStore.arrayOfDates" :key="index">
-    <div class="day__week-day">{{ toWeekDay(day) }}</div>
-    <div class="day__date">{{ toMonthDay(day) }}</div>
+  <div class="days-container">
+    <div class="days__empty"></div>
+    <div class="days__panel">
+      <button class="day" v-for="(day, index) in habbitsStore.arrayOfDates" :key="index">
+        <div class="day__week-day">{{ toWeekDay(day) }}</div>
+        <div class="day__date">{{ toMonthDay(day) }}</div>
+      </button>
+    </div>
   </div>
 </template>
-<style scoped>
+<style>
+.days-container {
+  display: flex;
+  flex: 1;
+  justify-content: space-between;
+}
+.days__empty {
+  display: flex;
+  /* min-width: 150px; */
+  min-width: 120px;
+  width: 150px;
+}
+.days__panel {
+  display: flex;
+  min-width: 200px;
+  flex-grow: 1;
+}
 .day {
+  display: flex;
+  /* justify-content: center; */
+  align-items: center;
+  flex-direction: column;
   width: 40px;
-  height: 40px;
-  /* border: 1px solid gray; */
+  /* height: 40px; */
+  cursor: pointer;
+  background: transparent;
+  border: 0;
+  color: grey;
 }
 .day__date {
   display: flex;

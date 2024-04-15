@@ -13,12 +13,8 @@ habbitsStore.fill()
   <header>
     <p class="logo">habtrack</p>
     <div class="wrapper">
-      <div class="days-container">
-        <DaysPanel />
-      </div>
-      <div class="habbits-container" v-for="habbit in habbitsStore.habbits" :key="habbit.id">
-        <HabbitPanel :habbit />
-      </div>
+      <DaysPanel />
+      <HabbitPanel v-for="habbit in habbitsStore.habbits" :key="habbit.id" :habbit />
       <div class="bottom-container">
         <NewHabbitPanel />
         <div class="message-panel">Add new habbit by pressing +</div>
@@ -36,10 +32,6 @@ habbitsStore.fill()
 }
 .logo {
   font-size: 3ch;
-}
-.days-container {
-  display: flex;
-  align-self: flex-end;
 }
 .habbits-container {
   display: flex;

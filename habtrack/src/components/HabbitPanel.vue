@@ -99,7 +99,6 @@ input[type='color']::-webkit-color-swatch {
   color: grey;
   /* border: 1px solid yellow; */
 }
-
 .marked {
   color: v-bind(inputColor);
 }
