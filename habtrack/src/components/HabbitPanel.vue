@@ -17,24 +17,6 @@ function updateColor() {
   }
 }
 
-const dates = props.habbit.days
-  .filter(day => day.date.length)
-  .map(day => new Date(day.date))
-  .map(day => new Date(day.setHours(0, 0, 0, 0)))
-  .map(day => day.valueOf())
-
-const daysList = ref([])
-for (let day of habbitsStore.arrayOfDates) {
-  day = new Date(day.setHours(0, 0, 0, 0))
-  day = day.valueOf()
-
-  if (dates.includes(day)) {
-    daysList.value.push(true)
-  } else {
-    daysList.value.push(false)
-  }
-}
-
 const icons = {
   true: 'v',
   false: 'x'
@@ -48,14 +30,15 @@ const icons = {
       <div class="habbit__name">{{ habbit.name }}</div>
     </div>
     <div class="habbit__cells">
-      <div
-        v-for="(day, index) in daysList"
+      <button
+        v-for="(day, index) in habbit.days"
+        @click="day.isMarked = !day.isMarked"
         :key="index"
         class="habbit__cell"
-        :class="day == true ? 'marked' : ''"
+        :class="day.isMarked == true ? 'marked' : ''"
       >
-        {{ icons[day] }}
-      </div>
+        {{ icons[day.isMarked] }}
+      </button>
     </div>
   </div>
 </template>
@@ -105,6 +88,9 @@ input[type='color']::-webkit-color-swatch {
   height: 40px;
   cursor: pointer;
   /* border: 1px solid yellow; */
+  background: transparent;
+  border: 0;
+  color: grey;
 }
 
 .marked {

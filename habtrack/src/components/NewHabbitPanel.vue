@@ -12,9 +12,7 @@ const newHabbitTemplate = computed(
       id: habbitsStore.newId,
       name: inputValue.value,
       color: '#808080',
-      days: [
-        { date: new Date().toLocaleDateString('lt'), isMarked: true, comment: 'test testijus' }
-      ]
+      days: [{ date: new Date().toLocaleDateString('lt'), isMarked: false, comment: '' }]
     }
   },
   { deep: true }
