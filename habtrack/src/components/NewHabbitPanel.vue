@@ -11,7 +11,7 @@ const newHabbitTemplate = computed(
     const days = []
 
     for (const day of habbitsStore.arrayOfDates) {
-      days.push({ day: day.toLocaleDateString('lt'), isMarked: false, comment: '' })
+      days.push({ date: day.toLocaleDateString('lt'), isMarked: false, comment: '' })
     }
 
     return {

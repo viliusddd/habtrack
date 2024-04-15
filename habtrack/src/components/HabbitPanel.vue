@@ -27,7 +27,7 @@ const icons = {
 // Get initial width of cells element
 const cellsElement = ref(null)
 const { width } = useElementSize(cellsElement)
-if (width) habbitsStore.shownDays = ref(Math.floor(width / 40))
+if (width) habbitsStore.shownDays = ref(Math.floor(260 / 40)) //! temp override
 
 /** Get cells element width on resize */
 function onResize({ width, height }) {
