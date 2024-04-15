@@ -83,7 +83,7 @@ input[type='color']::-webkit-color-swatch {
 }
 .habbit__cells {
   display: flex;
-  min-width: 200px;
+  min-width: 120px;
   flex-grow: 1;
   /* border: 1px solid green; */
 }
