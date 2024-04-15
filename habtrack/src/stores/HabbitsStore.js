@@ -10,14 +10,33 @@ export const useHabbitsStore = defineStore('HabbitsStore', () => {
     const storageVal = localStorage.getItem(key)
     if (storageVal) {
       habbits.value = JSON.parse(storageVal)
+
+      addMissingMarks()
     } else {
       localStorage.setItem(key, '')
     }
   }
 
-  function add(data) {
+  function addHabbit(data) {
     habbits.value.push(data)
     console.log(data)
+  }
+
+  function addMissingMarks() {
+    for (const habbit of habbits.value) {
+      for (const shownDate of arrayOfDates.value.slice(0, shownDays.value)) {
+        const shownDateStr = shownDate.toLocaleDateString('lt')
+
+        if (!habbit.days.map(day => day.date).includes(shownDateStr)) {
+          habbit.days.push({
+            date: shownDateStr,
+            isMarked: false,
+            comment: ''
+          })
+        }
+      }
+      habbit.days.sort((a, b) => b.date.localeCompare(a.date))
+    }
   }
 
   watch(
@@ -37,23 +56,15 @@ export const useHabbitsStore = defineStore('HabbitsStore', () => {
     }
   })
 
-  const getDateFromNum = num => {
-    const todayDate = new Date()
-    const prevDay = new Date()
-    prevDay.setDate(todayDate.getDate() + 1 - num)
-    return prevDay
-  }
+  const numOfDays = ref(14)
+  const shownDays = ref(14)
 
-  const numOfDays = ref(5)
+  const arrayOfDates = computed(() => getDaysFromToday(numOfDays.value))
 
-  const arrayOfDates = computed(() => getDaysArray(getDateFromNum(numOfDays.value), new Date()))
+  function getDaysFromToday(prevDay) {
+    const today = new Date()
+    prevDay = new Date(new Date().setDate(today.getDate() + 1 - prevDay))
 
-  /**
-   * @param {*} prevDay - the farthest day shown in app
-   * @param {*} today
-   * @return {Date[]} - array of Date obj (days) from the closest to farthest.
-   */
-  function getDaysArray(prevDay, today) {
     const arr = []
     for (let day = today; day >= prevDay; day.setDate(day.getDate() - 1)) {
       arr.push(new Date(day))
@@ -61,5 +72,5 @@ export const useHabbitsStore = defineStore('HabbitsStore', () => {
     return arr
   }
 
-  return { habbits, add, fill, newId, numOfDays, arrayOfDates }
+  return { habbits, addHabbit, fill, newId, numOfDays, shownDays, arrayOfDates }
 })

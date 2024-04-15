@@ -1,26 +1,21 @@
 <script setup>
 import { useHabbitsStore } from '@/stores/HabbitsStore'
-import { vElementSize } from '@vueuse/components'
-
-import { ref } from 'vue'
 
 const habbitsStore = useHabbitsStore()
 
 const toWeekDay = dateObj => dateObj.toLocaleDateString('us', { weekday: 'short' })
 const toMonthDay = dateObj => dateObj.getDate()
-
-function onResize({ width, height }) {
-  const days = ref(Math.floor(width / 40))
-  console.log(days.value)
-  habbitsStore.numOfDays = days.value
-}
 </script>
 
 <template>
   <div class="days-container">
     <div class="days__empty"></div>
-    <div class="days__panel" v-element-size="onResize">
-      <button class="day" v-for="(day, index) in habbitsStore.arrayOfDates" :key="index">
+    <div class="days__panel">
+      <button
+        class="day"
+        v-for="(day, index) in habbitsStore.arrayOfDates.slice(0, habbitsStore.shownDays)"
+        :key="index"
+      >
         <div class="day__week-day">{{ toWeekDay(day) }}</div>
         <div class="day__date">{{ toMonthDay(day) }}</div>
       </button>

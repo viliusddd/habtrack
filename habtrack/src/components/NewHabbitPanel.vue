@@ -8,18 +8,25 @@ const habbitsStore = useHabbitsStore()
 
 const newHabbitTemplate = computed(
   () => {
+    const days = []
+
+    for (const day of habbitsStore.arrayOfDates) {
+      days.push({ day: day.toLocaleDateString('lt'), isMarked: false, comment: '' })
+    }
+
     return {
       id: habbitsStore.newId,
       name: inputValue.value,
       color: '#808080',
-      days: [{ date: new Date().toLocaleDateString('lt'), isMarked: false, comment: '' }]
+      days
     }
   },
   { deep: true }
 )
 
 function submitNewHabbit() {
-  habbitsStore.add(newHabbitTemplate.value)
+  habbitsStore.addHabbit(newHabbitTemplate.value)
+  console.log(newHabbitTemplate.value.days)
   inputValue.value = ''
 }
 </script>
