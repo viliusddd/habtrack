@@ -53,6 +53,10 @@ const icons = {
 }
 .habbit__title {
   display: flex;
+  /* min-width: 150px; */
+  min-width: 120px;
+  width: 150px;
+  /* border: 1px solid red; */
 }
 input[type='color'] {
   border: none;
@@ -73,11 +77,14 @@ input[type='color']::-webkit-color-swatch {
   color: v-bind(inputColor);
 }
 .habbit__color {
+  display: flex;
+  flex-shrink: 0;
   cursor: pointer;
 }
 .habbit__cells {
-  display: grid;
-  grid-template-columns: repeat(5, 1fr);
+  display: flex;
+  min-width: 200px;
+  flex-grow: 1;
   /* border: 1px solid green; */
 }
 .habbit__cell {
@@ -87,10 +94,10 @@ input[type='color']::-webkit-color-swatch {
   width: 40px;
   height: 40px;
   cursor: pointer;
-  /* border: 1px solid yellow; */
   background: transparent;
   border: 0;
   color: grey;
+  /* border: 1px solid yellow; */
 }
 
 .marked {
