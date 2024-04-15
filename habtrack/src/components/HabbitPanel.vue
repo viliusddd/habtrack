@@ -27,18 +27,18 @@ const daysList = ref([])
 for (let day of habbitsStore.arrayOfDates) {
   day = new Date(day.setHours(0, 0, 0, 0))
   day = day.valueOf()
-  // console.log(day, dates)
 
   if (dates.includes(day)) {
-    // console.log('yes')
     daysList.value.push(true)
-    // break
   } else {
     daysList.value.push(false)
   }
 }
 
-console.log(daysList.value)
+const icons = {
+  true: 'v',
+  false: 'x'
+}
 </script>
 
 <template>
@@ -47,9 +47,15 @@ console.log(daysList.value)
       <input class="habbit__color" @input="updateColor" type="color" v-model="inputColor" />
       <div class="habbit__name">{{ habbit.name }}</div>
     </div>
-    <div v-for="(day, index) in daysList" class="habbit__cells" :key="index">
-      <div v-if="day" class="habbit__cell marked">v</div>
-      <div v-else class="habbit__cell">x</div>
+    <div class="habbit__cells">
+      <div
+        v-for="(day, index) in daysList"
+        :key="index"
+        class="habbit__cell"
+        :class="day == true ? 'marked' : ''"
+      >
+        {{ icons[day] }}
+      </div>
     </div>
   </div>
 </template>

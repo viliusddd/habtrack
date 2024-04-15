@@ -40,7 +40,7 @@ export const useHabbitsStore = defineStore('HabbitsStore', () => {
   const getDateFromNum = num => {
     const todayDate = new Date()
     const prevDay = new Date()
-    prevDay.setDate(todayDate.getDate() - num)
+    prevDay.setDate(todayDate.getDate() + 1 - num)
     return prevDay
   }
 
