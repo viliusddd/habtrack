@@ -59,6 +59,8 @@ export const useHabbitsStore = defineStore('HabbitsStore', () => {
   const numOfDays = ref(14)
   const shownDays = ref(14)
 
+  const message = ref('')
+
   const arrayOfDates = computed(() => getDaysFromToday(numOfDays.value))
 
   function getDaysFromToday(prevDay) {
@@ -72,5 +74,5 @@ export const useHabbitsStore = defineStore('HabbitsStore', () => {
     return arr
   }
 
-  return { habbits, addHabbit, fill, newId, numOfDays, shownDays, arrayOfDates }
+  return { habbits, addHabbit, fill, newId, numOfDays, shownDays, arrayOfDates, message }
 })

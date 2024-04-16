@@ -25,9 +25,28 @@ const newHabbitTemplate = computed(
 )
 
 function submitNewHabbit() {
-  habbitsStore.addHabbit(newHabbitTemplate.value)
-  console.log(newHabbitTemplate.value.days)
-  inputValue.value = ''
+  const minVal = 3
+  const maxVal = 22
+  if (inputValue.value.length < minVal) {
+    habbitsStore.message = `Habbit name should be more than ${minVal} characters`
+  } else if (inputValue.value.length > maxVal) {
+    habbitsStore.message = `Habbit name should be less than ${maxVal} characters`
+  } else if (!isValidInput()) {
+    habbitsStore.message = 'No special characters are allowed in habbit name.'
+  } else {
+    habbitsStore.addHabbit(newHabbitTemplate.value)
+    console.log(newHabbitTemplate.value.days)
+    inputValue.value = ''
+    habbitsStore.message = ''
+  }
+}
+
+function isValidInput() {
+  if (/[$&+,:;=?@#|'<>.^*()%{[}/\\\]]/.test(inputValue.value)) {
+    return false
+  } else {
+    return true
+  }
 }
 </script>
 
@@ -37,9 +56,10 @@ function submitNewHabbit() {
       +
     </button>
     <input
+      type="text"
       class="new-habbit__name"
       v-model="inputValue"
-      minlenght="3"
+      maxlength="22"
       @keydown.enter="submitNewHabbit"
       placeholder="Enter new habbit"
     />

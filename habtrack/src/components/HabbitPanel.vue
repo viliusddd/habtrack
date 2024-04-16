@@ -27,7 +27,8 @@ const icons = {
 // Get initial width of cells element
 const cellsElement = ref(null)
 const { width } = useElementSize(cellsElement)
-if (width) habbitsStore.shownDays = ref(Math.floor(260 / 40)) //! temp override
+if (width) habbitsStore.shownDays = ref(Math.floor(width / 40)) //! temp override
+// if (width) habbitsStore.shownDays = ref(Math.floor(260 / 40)) //! temp override
 
 /** Get cells element width on resize */
 function onResize({ width, height }) {
@@ -71,7 +72,6 @@ function toggleMark(day) {
 }
 .habbit__title {
   display: flex;
-  /* min-width: 150px; */
   min-width: 120px;
   width: 150px;
   /* border: 1px solid red; */
@@ -93,6 +93,7 @@ input[type='color']::-webkit-color-swatch {
   justify-content: center;
   align-items: center;
   color: v-bind(inputColor);
+  word-break: break-all; /* break-word alternative */
 }
 .habbit__color {
   display: flex;
@@ -102,6 +103,7 @@ input[type='color']::-webkit-color-swatch {
 .habbit__cells {
   display: flex;
   min-width: 120px;
+  height: 40px;
   flex-grow: 1;
   /* border: 1px solid green; */
 }

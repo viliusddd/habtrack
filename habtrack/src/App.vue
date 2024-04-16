@@ -17,7 +17,7 @@ habbitsStore.fill()
       <HabbitPanel v-for="habbit in habbitsStore.habbits" :key="habbit.id" :habbit />
       <div class="bottom-container">
         <NewHabbitPanel />
-        <div class="message-panel">Add new habbit by pressing +</div>
+        <div class="message-panel">{{ habbitsStore.message }}</div>
       </div>
     </div>
   </header>
