@@ -1,5 +1,5 @@
 <script setup>
-import { defineProps, ref } from 'vue'
+import { defineProps, onMounted, ref } from 'vue'
 import { useHabbitsStore } from '@/stores/HabbitsStore'
 import { vElementSize } from '@vueuse/components'
 import { useElementSize } from '@vueuse/core'
@@ -19,26 +19,22 @@ function updateColor() {
   }
 }
 
-const icons = {
-  true: 'v',
-  false: 'x'
-}
-
-// Get initial width of cells element
+/** Update shownDays number after component has been mounted */
 const cellsElement = ref(null)
 const { width } = useElementSize(cellsElement)
-if (width) habbitsStore.shownDays = ref(Math.floor(width / 40)) //! temp override
-// if (width) habbitsStore.shownDays = ref(Math.floor(260 / 40)) //! temp override
+onMounted(() => {
+  if (width) habbitsStore.shownDays = ref(Math.floor(width.value / 40))
+})
 
-/** Get cells element width on resize */
+/** Update shownDays number when .habbit_cells width changes */
 function onResize({ width, height }) {
-  // console.log(habbitsStore.shownDays, '/', habbitsStore.numOfDays)
   const days = ref(Math.floor(width / 40))
   if (days.value) habbitsStore.shownDays = days.value
 }
 
-function toggleMark(day) {
-  day.isMarked = !day.isMarked
+const icons = {
+  true: 'v',
+  false: 'x'
 }
 </script>
 
@@ -51,7 +47,7 @@ function toggleMark(day) {
     <div class="habbit__cells" ref="cellsElement" v-element-size="onResize">
       <button
         v-for="(day, index) in habbit.days.slice(0, habbitsStore.shownDays)"
-        @click="toggleMark(day)"
+        @click="day.isMarked = !day.isMarked"
         :key="index"
         class="habbit__cell"
         :class="day.isMarked == true ? 'marked' : ''"
