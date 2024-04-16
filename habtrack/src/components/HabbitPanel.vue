@@ -74,7 +74,7 @@ function toggleMark(day) {
   display: flex;
   min-width: 120px;
   width: 150px;
-  /* border: 1px solid red; */
+  height: 40px;
 }
 input[type='color'] {
   border: none;
@@ -82,6 +82,8 @@ input[type='color'] {
   width: 15px;
   background: transparent;
   margin: 0 2px;
+  padding-top: 11px;
+  height: 40px;
 }
 input[type='color']::-webkit-color-swatch {
   border: 0;
@@ -105,7 +107,6 @@ input[type='color']::-webkit-color-swatch {
   min-width: 120px;
   height: 40px;
   flex-grow: 1;
-  /* border: 1px solid green; */
 }
 .habbit__cell {
   display: flex;
@@ -117,7 +118,6 @@ input[type='color']::-webkit-color-swatch {
   background: transparent;
   border: 0;
   color: grey;
-  /* border: 1px solid yellow; */
 }
 .marked {
   color: v-bind(inputColor);
