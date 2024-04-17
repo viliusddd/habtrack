@@ -24,14 +24,16 @@ onClickOutside(modalRef, event => {
   useRouter().back()
 })
 
+const router = useRouter()
+
 function deleteHabbit() {
-  useRouter().back()
+  router.back()
   habbitStore.habbits = habbitStore.habbits.filter(obj => obj.id !== props.id)
 }
 </script>
 
 <template>
-  <div ref="target" class="modal">
+  <div v-if="currentHabbit" ref="target" class="modal">
     <label class="modal__title-label" for="change-name">Change the name of the habit: </label><br />
     <input class="modal__title" v-model="currentHabbit.name" id="change-name" autocomplete="off" />
     <br />

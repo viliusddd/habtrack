@@ -4,8 +4,11 @@ import { useHabbitsStore } from '@/stores/HabbitsStore'
 import HabbitPanel from '@/components/HabbitPanel.vue'
 import NewHabbitPanel from '@/components/NewHabbitPanel.vue'
 
+defineProps({
+  date: String
+})
+
 const habbitsStore = useHabbitsStore()
-habbitsStore.fill()
 </script>
 
 <template>
