@@ -61,7 +61,7 @@ function isValidInput() {
       v-model="inputValue"
       maxlength="22"
       @keydown.enter="submitNewHabbit"
-      placeholder="Enter new habbit"
+      placeholder="Add a new habbit"
     />
   </div>
 </template>
@@ -86,7 +86,7 @@ function isValidInput() {
 .new-habbit__name {
   display: flex;
   align-items: center;
-  width: 130px;
+  width: 150px;
   background: transparent;
   color: lightgray;
   border: 0;

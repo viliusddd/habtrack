@@ -72,9 +72,11 @@ const selectedDay = computed(() => {
       >
         {{ icons[selectedDay.isMarked] }}
       </button>
-      <div class="habbit__comment">
-        {{ selectedDay.comment }}
-      </div>
+      <textarea
+        class="habbit__comment"
+        placeholder="Add a comment"
+        v-model="selectedDay.comment"
+      ></textarea>
     </div>
   </div>
 </template>
@@ -89,7 +91,7 @@ const selectedDay = computed(() => {
 }
 .habbit__title {
   display: flex;
-  min-width: 120px;
+  min-width: 150px;
   width: 150px;
   height: 40px;
 }
@@ -119,11 +121,17 @@ input[type='color']::-webkit-color-swatch {
   flex-shrink: 0;
   cursor: pointer;
 }
-.habbit__comment {
-  display: flex;
-  height: 40px;
+textarea {
+  border: 0;
+  padding: 0;
+  outline: none;
+
+  line-height: inherit;
+  background: transparent;
+  resize: none;
+  width: 100%;
+  color: v-bind(inputColor);
   min-width: 120px;
-  overflow: auto;
 }
 .habbit__cells {
   display: flex;
