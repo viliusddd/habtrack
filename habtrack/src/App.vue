@@ -26,6 +26,11 @@ habbitsStore.fill()
 </template>
 
 <style scoped>
+header {
+  display: flex;
+  flex-direction: column;
+  max-width: 712px;
+}
 .wrapper {
   display: flex;
   flex-direction: column;
