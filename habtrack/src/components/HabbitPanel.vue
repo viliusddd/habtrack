@@ -46,7 +46,9 @@ const selectedDay = computed(() => {
   <div class="habbit">
     <div class="habbit__title">
       <input class="habbit__color" @input="updateColor" type="color" v-model="inputColor" />
-      <div class="habbit__name">{{ habbit.name }}</div>
+      <RouterLink class="habbit__name" :to="{ name: 'HabbitView', params: { id: habbit.id } }">
+        {{ habbit.name }}
+      </RouterLink>
     </div>
     <div
       v-if="$route.name === 'Home'"
@@ -115,6 +117,10 @@ input[type='color']::-webkit-color-swatch {
   align-items: center;
   color: v-bind(inputColor);
   word-break: break-word; /* break-all alternative */
+}
+.habbit__name:link {
+  color: gray;
+  text-decoration: none;
 }
 .habbit__color {
   display: flex;

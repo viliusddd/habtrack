@@ -8,6 +8,12 @@ const routes = [
     name: 'DayView',
     component: () => import('@/views/HomeView.vue'),
     props: route => ({ ...route.params, date: parseInt(route.params.date) })
+  },
+  {
+    path: '/habbit/:id',
+    name: 'HabbitView',
+    component: () => import('@/views/HabbitView.vue'),
+    props: route => ({ ...route.params, id: parseInt(route.params.id) })
   }
 ]
 
