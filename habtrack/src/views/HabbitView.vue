@@ -34,8 +34,9 @@ function deleteHabbit() {
 
 <template>
   <div v-if="currentHabbit" ref="target" class="modal">
-    <label class="modal__title-label" for="change-name">Change the name of the habit: </label><br />
-    <input class="modal__title" v-model="currentHabbit.name" id="change-name" autocomplete="off" />
+    <button @click="$router.back" class="modal__close-btn">x</button>
+    <label class="modal__name-label" for="change-name">Change the name of the habit: </label>
+    <input class="modal__name" v-model="currentHabbit.name" id="change-name" autocomplete="off" />
     <br />
 
     <div class="delete">
@@ -48,7 +49,6 @@ function deleteHabbit() {
 .modal {
   display: flex;
   flex-direction: column;
-  padding: 20px 10px;
   z-index: 99;
   background: rgba(255, 255, 255, 0.059);
   position: fixed;
@@ -56,6 +56,7 @@ function deleteHabbit() {
   left: 50%;
   transform: translate(-50%, -50%);
   margin: 0;
+  padding: 5px 10px 20px;
   /* width: 55vw; */
   height: 40%;
   border-radius: 6px;
@@ -90,6 +91,23 @@ function deleteHabbit() {
 }
 .modal__title {
   display: flex;
+}
+.modal__close-btn {
+  margin-right: 0;
+  margin-left: auto;
+  border: 1px solid red;
+  padding: 0 5px 0 5px;
+  background: transparent;
+  border: none;
+  outline: 0;
+  color: inherit;
+  cursor: pointer;
+}
+.modal__name-label {
+  padding: 0 0 0 10px;
+}
+.modal__name {
+  display: flex;
   background: transparent;
   border: inherit;
   outline: none;
@@ -103,5 +121,6 @@ function deleteHabbit() {
 .delete {
   margin-bottom: 0;
   margin-top: auto;
+  padding: 0 0 0 10px;
 }
 </style>
