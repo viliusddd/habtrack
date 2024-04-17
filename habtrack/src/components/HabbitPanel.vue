@@ -1,8 +1,9 @@
 <script setup>
-import { defineProps, onMounted, ref } from 'vue'
+import { defineProps, computed, onMounted, ref } from 'vue'
 import { useHabbitsStore } from '@/stores/HabbitsStore'
 import { vElementSize } from '@vueuse/components'
 import { useElementSize } from '@vueuse/core'
+import { useRoute } from 'vue-router'
 
 const habbitsStore = useHabbitsStore()
 
@@ -36,6 +37,9 @@ const icons = {
   true: 'v',
   false: 'x'
 }
+const selectedDay = computed(() => {
+  return props.habbit.days.find(day => day.date === useRoute().params.date)
+})
 </script>
 
 <template>
@@ -44,7 +48,12 @@ const icons = {
       <input class="habbit__color" @input="updateColor" type="color" v-model="inputColor" />
       <div class="habbit__name">{{ habbit.name }}</div>
     </div>
-    <div class="habbit__cells" ref="cellsElement" v-element-size="onResize">
+    <div
+      v-if="$route.name === 'Home'"
+      class="habbit__cells"
+      ref="cellsElement"
+      v-element-size="onResize"
+    >
       <button
         v-for="(day, index) in habbit.days.slice(0, habbitsStore.shownDays)"
         @click="day.isMarked = !day.isMarked"
@@ -54,6 +63,18 @@ const icons = {
       >
         {{ icons[day.isMarked] }}
       </button>
+    </div>
+    <div v-else class="habbit__cells" ref="cellsElement" v-element-size="onResize">
+      <button
+        @click="selectedDay.isMarked = !selectedDay.isMarked"
+        class="habbit__cell"
+        :class="selectedDay.isMarked == true ? 'marked' : ''"
+      >
+        {{ icons[selectedDay.isMarked] }}
+      </button>
+      <div class="habbit__comment">
+        {{ selectedDay.comment }}
+      </div>
     </div>
   </div>
 </template>
@@ -91,12 +112,18 @@ input[type='color']::-webkit-color-swatch {
   justify-content: center;
   align-items: center;
   color: v-bind(inputColor);
-  word-break: break-all; /* break-word alternative */
+  word-break: break-word; /* break-all alternative */
 }
 .habbit__color {
   display: flex;
   flex-shrink: 0;
   cursor: pointer;
+}
+.habbit__comment {
+  display: flex;
+  height: 40px;
+  min-width: 120px;
+  overflow: auto;
 }
 .habbit__cells {
   display: flex;
@@ -108,6 +135,7 @@ input[type='color']::-webkit-color-swatch {
   display: flex;
   justify-content: center;
   align-items: center;
+  flex-shrink: 0;
   width: 40px;
   height: 40px;
   cursor: pointer;

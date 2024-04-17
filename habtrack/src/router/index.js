@@ -2,11 +2,11 @@ import { createRouter, createWebHistory } from 'vue-router'
 import HomeView from '@/views/HomeView.vue'
 
 const routes = [
-  { path: '/', name: 'home', component: HomeView },
+  { path: '/', name: 'Home', component: HomeView },
   {
     path: '/day/:date',
     name: 'DayView',
-    component: () => import('@/views/DayView.vue'),
+    component: () => import('@/views/HomeView.vue'),
     props: route => ({ ...route.params, date: parseInt(route.params.date) })
   }
 ]
