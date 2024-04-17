@@ -8,21 +8,33 @@ const toMonthDay = dateObj => dateObj.getDate()
 </script>
 
 <template>
+  <RouterLink class="logo" to="/">habtrack</RouterLink>
   <div class="days-container">
     <div class="days__empty"></div>
-    <div class="days__panel">
-      <button
+    <nav class="days__panel">
+      <RouterLink
         class="day"
         v-for="(day, index) in habbitsStore.arrayOfDates.slice(0, habbitsStore.shownDays)"
         :key="index"
+        :to="{ name: 'DayView', params: { date: day.toLocaleDateString('lt') } }"
       >
         <div class="day__week-day">{{ toWeekDay(day) }}</div>
         <div class="day__date">{{ toMonthDay(day) }}</div>
-      </button>
-    </div>
+      </RouterLink>
+    </nav>
   </div>
 </template>
 <style>
+.logo {
+  font-size: 3ch;
+}
+.logo:visited {
+  color: gray;
+}
+.logo:link {
+  color: gray;
+  text-decoration: none;
+}
 .days-container {
   display: flex;
   flex: 1;
@@ -50,6 +62,7 @@ const toMonthDay = dateObj => dateObj.getDate()
   background: transparent;
   border: 0;
   color: grey;
+  text-decoration: none;
 }
 .day__date {
   display: flex;
@@ -60,5 +73,8 @@ const toMonthDay = dateObj => dateObj.getDate()
   display: flex;
   justify-content: center;
   align-items: center;
+}
+.active-day {
+  border-bottom: 2px solid;
 }
 </style>

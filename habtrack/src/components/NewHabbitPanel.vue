@@ -28,9 +28,9 @@ function submitNewHabbit() {
   const minVal = 3
   const maxVal = 22
   if (inputValue.value.length < minVal) {
-    habbitsStore.message = `Habbit name can't be less than ${minVal} characters`
+    habbitsStore.message = `Habbit name can't be less than ${minVal} characters long`
   } else if (inputValue.value.length > maxVal) {
-    habbitsStore.message = `Habbit name can't be more than ${maxVal} characters`
+    habbitsStore.message = `Habbit name can't be more than ${maxVal} characters long`
   } else if (!isValidInput()) {
     habbitsStore.message = 'No special characters are allowed in habbit name.'
   } else {
