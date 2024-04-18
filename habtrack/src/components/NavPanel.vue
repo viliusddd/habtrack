@@ -1,7 +1,23 @@
 <script setup>
 import {useHabbitsStore} from '@/stores/HabbitsStore'
+import {onMounted, ref} from 'vue'
+import {useElementSize} from '@vueuse/core'
+import {vElementSize} from '@vueuse/components'
 
 const habbitsStore = useHabbitsStore()
+
+/** Update shownDays number after component has been mounted */
+const cellsElement = ref(null)
+const {width} = useElementSize(cellsElement)
+onMounted(() => {
+  if (width) habbitsStore.shownDays = ref(Math.floor(width.value / 40))
+})
+
+/** Update shownDays number when .habbit_cells width changes */
+function onResize({width, height}) {
+  const days = ref(Math.floor(width / 40))
+  if (days.value) habbitsStore.shownDays = days.value
+}
 
 const toWeekDay = dateObj =>
   dateObj.toLocaleDateString('us', {weekday: 'short'})
@@ -23,7 +39,7 @@ const toMonthDay = dateObj => dateObj.getDate()
   </div>
   <div v-if="!habbitsStore.hideNavigation" class="days-container">
     <div class="days__empty"></div>
-    <nav class="days__panel">
+    <nav ref="cellsElement" v-element-size="onResize" class="days__panel">
       <RouterLink
         class="day"
         v-for="(day, index) in habbitsStore.arrayOfDates.slice(

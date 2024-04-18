@@ -1,8 +1,6 @@
 <script setup>
-import {defineProps, computed, onMounted, ref} from 'vue'
+import {defineProps, computed, ref} from 'vue'
 import {useHabbitsStore} from '@/stores/HabbitsStore'
-import {vElementSize} from '@vueuse/components'
-import {useElementSize} from '@vueuse/core'
 import {useRoute} from 'vue-router'
 
 const habbitsStore = useHabbitsStore()
@@ -18,19 +16,6 @@ function updateColor() {
   for (let habbit of habbitsStore.habbits) {
     if (habbit.id === props.habbit.id) habbit.color = inputColor
   }
-}
-
-/** Update shownDays number after component has been mounted */
-const cellsElement = ref(null)
-const {width} = useElementSize(cellsElement)
-onMounted(() => {
-  if (width) habbitsStore.shownDays = ref(Math.floor(width.value / 40))
-})
-
-/** Update shownDays number when .habbit_cells width changes */
-function onResize({width, height}) {
-  const days = ref(Math.floor(width / 40))
-  if (days.value) habbitsStore.shownDays = days.value
 }
 
 const icons = {
@@ -65,12 +50,7 @@ function continueWithHabbit() {
         {{ habbit.name }}
       </RouterLink>
     </div>
-    <div
-      v-if="$route.name === 'Home'"
-      class="habbit__cells"
-      ref="cellsElement"
-      v-element-size="onResize"
-    >
+    <div v-if="$route.name === 'Home'" class="habbit__cells">
       <button
         v-for="(day, index) in habbit.days.slice(0, habbitsStore.shownDays)"
         @click="day.isMarked = !day.isMarked"
@@ -81,12 +61,7 @@ function continueWithHabbit() {
         {{ icons[day.isMarked] }}
       </button>
     </div>
-    <div
-      v-else
-      class="habbit__cells"
-      ref="cellsElement"
-      v-element-size="onResize"
-    >
+    <div v-else class="habbit__cells">
       <button
         @click="selectedDay.isMarked = !selectedDay.isMarked"
         class="habbit__cell"
