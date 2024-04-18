@@ -12,7 +12,7 @@ const toMonthDay = dateObj => dateObj.getDate()
   <div class="header">
     <RouterLink class="logo" to="/">habtrack</RouterLink>
     <div class="hidden__toggle">
-      <label for="toggleShowHidden">Show hidden habbits</label>
+      <label for="toggleShowHidden">Show hidden</label>
       <input
         type="checkbox"
         name=""
@@ -60,6 +60,8 @@ const toMonthDay = dateObj => dateObj.getDate()
 .logo:link {
   color: gray;
   text-decoration: none;
+  border-bottom: 2px solid;
+  border: 0;
 }
 .days-container {
   display: flex;

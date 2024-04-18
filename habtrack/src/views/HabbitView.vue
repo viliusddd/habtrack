@@ -45,6 +45,7 @@ function deleteHabbit() {
       v-model="currentHabbit.name"
       id="change-name"
       autocomplete="off"
+      maxlength="22"
     />
     <br />
 
@@ -138,13 +139,12 @@ button:hover {
 .modal__close-btn {
   margin-right: 0;
   margin-left: auto;
-  border: 1px solid red;
   padding: 0 5px 0 5px;
   background: transparent;
-  border: none;
   outline: 0;
   color: inherit;
   cursor: pointer;
+  border-color: transparent;
 }
 .modal__name-label {
   padding: 0 0 0 10px;
