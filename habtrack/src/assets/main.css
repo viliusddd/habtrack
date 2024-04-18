@@ -7,6 +7,11 @@
   margin: 0;
 }
 
+input[type='checkbox'] {
+  accent-color: gray;
+  cursor: pointer;
+}
+
 #app {
   max-width: 1280px;
   margin: 0 5px;

@@ -9,7 +9,18 @@ const toMonthDay = dateObj => dateObj.getDate()
 </script>
 
 <template>
-  <RouterLink class="logo" to="/">habtrack</RouterLink>
+  <div class="header">
+    <RouterLink class="logo" to="/">habtrack</RouterLink>
+    <div class="hidden__toggle">
+      <label for="toggleShowHidden">Show hidden habbits</label>
+      <input
+        type="checkbox"
+        name=""
+        id="toggleShowHidden"
+        v-model="habbitsStore.includeHidden"
+      />
+    </div>
+  </div>
   <div class="days-container">
     <div class="days__empty"></div>
     <nav class="days__panel">
@@ -29,8 +40,19 @@ const toMonthDay = dateObj => dateObj.getDate()
   </div>
 </template>
 <style>
+.header {
+  margin-top: 5px;
+  display: flex;
+  align-items: center;
+}
 .logo {
   font-size: 3ch;
+}
+.hidden__toggle {
+  display: flex;
+  align-items: center;
+  column-gap: 3px;
+  margin: 0 0 0 auto;
 }
 .logo:visited {
   color: gray;
@@ -68,6 +90,8 @@ const toMonthDay = dateObj => dateObj.getDate()
   color: grey;
   text-decoration: none;
   line-height: 18px;
+  border-bottom: 2px solid;
+  border-color: transparent;
 }
 .day:hover {
   border-bottom: 2px solid;

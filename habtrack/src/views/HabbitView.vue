@@ -38,7 +38,7 @@ function deleteHabbit() {
   <div v-if="currentHabbit" ref="target" class="modal">
     <button @click="$router.back" class="modal__close-btn">x</button>
     <label class="modal__name-label" for="change-name"
-      >Change the name of the habit:
+      >Edit habbit name:
     </label>
     <input
       class="modal__name"
@@ -48,18 +48,47 @@ function deleteHabbit() {
     />
     <br />
 
+    <div class="hide-btn">
+      <input
+        class="hide-btn__label"
+        type="checkbox"
+        id="archive-chbx"
+        v-model="currentHabbit.isHidden"
+      />
+      <label class="hide-btn__checkbox" for="archive-chbx">Hide habbit</label>
+    </div>
     <div class="delete">
       <button class="delete__btn" @click="deleteHabbit">Delete habbit</button>
-      <div class="delete__question">Are you sure?</div>
+      <!-- <div class="delete__question">Are you sure?</div>
       <div>
         <button class="delete__btn-yes">yes</button>
         <button class="delete__btn-no">no</button>
-      </div>
+      </div> -->
     </div>
   </div>
 </template>
 
 <style scoped>
+.hide-btn {
+  display: flex;
+  padding-left: 10px;
+  column-gap: 3px;
+}
+button {
+  outline: 0;
+  color: inherit;
+  cursor: pointer;
+  background: transparent;
+  border: none;
+  border-bottom: 2px solid;
+  border-bottom-color: transparent;
+  padding: 0;
+}
+button:hover {
+  display: inline-block;
+  border-bottom: 2px solid;
+}
+
 .modal {
   display: flex;
   flex-direction: column;
@@ -152,19 +181,5 @@ function deleteHabbit() {
   color: red;
 }
 .delete__btn-no {
-}
-button {
-  background: transparent;
-  border: none;
-  outline: 0;
-  color: inherit;
-  cursor: pointer;
-  line-height: 12px;
-}
-button:hover {
-  display: inline-block;
-  border-bottom: 2px solid;
-  border-bottom-style: solid;
-  /* text-decoration: underline; */
 }
 </style>

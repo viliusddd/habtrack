@@ -40,10 +40,17 @@ const icons = {
 const selectedDay = computed(() => {
   return props.habbit.days.find(day => day.date === useRoute().params.date)
 })
+function continueWithHabbit() {
+  if (!habbitsStore.includeHidden && props.habbit.isHidden) {
+    return false
+  } else {
+    return true
+  }
+}
 </script>
 
 <template>
-  <div class="habbit">
+  <div v-if="continueWithHabbit()" class="habbit">
     <div class="habbit__title">
       <input
         class="habbit__color"
@@ -52,7 +59,7 @@ const selectedDay = computed(() => {
         v-model="inputColor"
       />
       <RouterLink
-        class="habbit__name"
+        :class="habbit.isHidden ? 'underline habbit__name' : 'habbit__name'"
         :to="{name: 'HabbitView', params: {id: habbit.id}}"
       >
         {{ habbit.name }}
@@ -169,6 +176,9 @@ textarea {
   background: transparent;
   border: 0;
   color: grey;
+}
+.underline:link {
+  text-decoration: green wavy underline;
 }
 .marked {
   color: v-bind(inputColor);
