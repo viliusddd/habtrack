@@ -9,7 +9,7 @@ const toMonthDay = dateObj => dateObj.getDate()
 </script>
 
 <template>
-  <div class="header">
+  <div v-if="!habbitsStore.hideNavigation" class="header">
     <RouterLink class="logo" to="/">habtrack</RouterLink>
     <div class="hidden__toggle">
       <label for="toggleShowHidden">Show hidden</label>
@@ -21,7 +21,7 @@ const toMonthDay = dateObj => dateObj.getDate()
       />
     </div>
   </div>
-  <div class="days-container">
+  <div v-if="!habbitsStore.hideNavigation" class="days-container">
     <div class="days__empty"></div>
     <nav class="days__panel">
       <RouterLink

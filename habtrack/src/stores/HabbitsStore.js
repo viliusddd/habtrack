@@ -76,6 +76,8 @@ export const useHabbitsStore = defineStore('HabbitsStore', () => {
 
   const includeHidden = ref(false)
 
+  const hideNavigation = ref(false)
+
   return {
     habbits,
     addHabbit,
@@ -85,6 +87,7 @@ export const useHabbitsStore = defineStore('HabbitsStore', () => {
     shownDays,
     arrayOfDates,
     message,
-    includeHidden
+    includeHidden,
+    hideNavigation
   }
 })

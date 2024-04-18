@@ -2,16 +2,13 @@
 import {computed, ref} from 'vue'
 import {useHabbitsStore} from '@/stores/HabbitsStore'
 import {useRouter} from 'vue-router'
-import {onClickOutside} from '@vueuse/core'
 
 const habbitStore = useHabbitsStore()
 
+habbitStore.hideNavigation = true
 const props = defineProps({
   id: Number
 })
-
-const modal = ref(false)
-const modalRef = ref(null)
 
 const target = ref(null)
 
@@ -19,24 +16,22 @@ const currentHabbit = computed(() => {
   return habbitStore.habbits.find(hab => hab.id === props.id)
 })
 
-onClickOutside(target, event => console.log(event))
-
-onClickOutside(modalRef, event => {
-  modal.value = false
-  useRouter().back()
-})
-
 const router = useRouter()
 
 function deleteHabbit() {
   router.back()
   habbitStore.habbits = habbitStore.habbits.filter(obj => obj.id !== props.id)
+  habbitStore.hideNavigation = false
+}
+const closeModal = () => {
+  router.back()
+  habbitStore.hideNavigation = false
 }
 </script>
 
 <template>
   <div v-if="currentHabbit" ref="target" class="modal">
-    <button @click="$router.back" class="modal__close-btn">x</button>
+    <button @click="closeModal" class="modal__close-btn">x</button>
     <label class="modal__name-label" for="change-name"
       >Edit habbit name:
     </label>
@@ -60,11 +55,6 @@ function deleteHabbit() {
     </div>
     <div class="delete">
       <button class="delete__btn" @click="deleteHabbit">Delete habbit</button>
-      <!-- <div class="delete__question">Are you sure?</div>
-      <div>
-        <button class="delete__btn-yes">yes</button>
-        <button class="delete__btn-no">no</button>
-      </div> -->
     </div>
   </div>
 </template>
@@ -170,16 +160,5 @@ button:hover {
 }
 .delete__btn {
   margin: 0 auto 0 0;
-}
-.delete__question {
-  margin: 0 5px;
-}
-.delete > div {
-  gap: 5px;
-}
-.delete__btn-yes {
-  color: red;
-}
-.delete__btn-no {
 }
 </style>
