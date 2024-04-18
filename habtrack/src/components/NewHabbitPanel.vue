@@ -6,6 +6,12 @@ const inputValue = ref('')
 
 const habbitsStore = useHabbitsStore()
 
+const getRandomColor = () =>
+  '#' +
+  Math.floor(Math.random() * 2 ** 24)
+    .toString(16)
+    .padStart(6, '0')
+
 const newHabbitTemplate = computed(
   () => {
     const days = []
@@ -13,7 +19,6 @@ const newHabbitTemplate = computed(
     for (const day of habbitsStore.arrayOfDates) {
       days.push({
         date: day.toLocaleDateString('lt'),
-        isHidden: false,
         isMarked: false,
         comment: ''
       })
@@ -22,7 +27,8 @@ const newHabbitTemplate = computed(
     return {
       id: habbitsStore.newId,
       name: inputValue.value,
-      color: '#808080',
+      color: getRandomColor(),
+      isHidden: false,
       days
     }
   },
