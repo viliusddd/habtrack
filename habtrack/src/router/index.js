@@ -1,19 +1,19 @@
-import { createRouter, createWebHistory } from 'vue-router'
+import {createRouter, createWebHistory} from 'vue-router'
 import HomeView from '@/views/HomeView.vue'
 
 const routes = [
-  { path: '/', name: 'Home', component: HomeView },
+  {path: '/', name: 'Home', component: HomeView},
   {
     path: '/day/:date',
     name: 'DayView',
     component: () => import('@/views/HomeView.vue'),
-    props: route => ({ ...route.params, date: route.params.date })
+    props: route => ({...route.params, date: route.params.date})
   },
   {
     path: '/habbit/:id',
     name: 'HabbitView',
     component: () => import('@/views/HabbitView.vue'),
-    props: route => ({ ...route.params, id: parseInt(route.params.id) })
+    props: route => ({...route.params, id: parseInt(route.params.id)})
   }
 ]
 

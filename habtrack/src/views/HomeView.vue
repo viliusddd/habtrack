@@ -1,6 +1,6 @@
 <script setup>
-import { RouterLink, RouterView } from 'vue-router'
-import { useHabbitsStore } from '@/stores/HabbitsStore'
+import {RouterView} from 'vue-router'
+import {useHabbitsStore} from '@/stores/HabbitsStore'
 import HabbitPanel from '@/components/HabbitPanel.vue'
 import NewHabbitPanel from '@/components/NewHabbitPanel.vue'
 
@@ -13,7 +13,11 @@ const habbitsStore = useHabbitsStore()
 
 <template>
   <div class="wrapper">
-    <HabbitPanel v-for="habbit in habbitsStore.habbits" :key="habbit.id" :habbit />
+    <HabbitPanel
+      v-for="habbit in habbitsStore.habbits"
+      :key="habbit.id"
+      :habbit
+    />
     <div class="bottom-container">
       <NewHabbitPanel />
       <div class="message-panel">{{ habbitsStore.message }}</div>

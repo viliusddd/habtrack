@@ -1,6 +1,6 @@
 <script setup>
-import { useHabbitsStore } from '@/stores/HabbitsStore'
-import { computed, ref } from 'vue'
+import {useHabbitsStore} from '@/stores/HabbitsStore'
+import {computed, ref} from 'vue'
 
 const inputValue = ref('')
 
@@ -11,7 +11,11 @@ const newHabbitTemplate = computed(
     const days = []
 
     for (const day of habbitsStore.arrayOfDates) {
-      days.push({ date: day.toLocaleDateString('lt'), isMarked: false, comment: '' })
+      days.push({
+        date: day.toLocaleDateString('lt'),
+        isMarked: false,
+        comment: ''
+      })
     }
 
     return {
@@ -21,7 +25,7 @@ const newHabbitTemplate = computed(
       days
     }
   },
-  { deep: true }
+  {deep: true}
 )
 
 function submitNewHabbit() {
@@ -52,7 +56,12 @@ function isValidInput() {
 
 <template>
   <div class="new-habbit">
-    <button class="new-habbit__btn" @click="submitNewHabbit" type="submit" :value="inputValue">
+    <button
+      class="new-habbit__btn"
+      @click="submitNewHabbit"
+      type="submit"
+      :value="inputValue"
+    >
       +
     </button>
     <input

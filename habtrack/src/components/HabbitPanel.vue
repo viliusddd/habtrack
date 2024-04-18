@@ -1,9 +1,9 @@
 <script setup>
-import { defineProps, computed, onMounted, ref } from 'vue'
-import { useHabbitsStore } from '@/stores/HabbitsStore'
-import { vElementSize } from '@vueuse/components'
-import { useElementSize } from '@vueuse/core'
-import { useRoute } from 'vue-router'
+import {defineProps, computed, onMounted, ref} from 'vue'
+import {useHabbitsStore} from '@/stores/HabbitsStore'
+import {vElementSize} from '@vueuse/components'
+import {useElementSize} from '@vueuse/core'
+import {useRoute} from 'vue-router'
 
 const habbitsStore = useHabbitsStore()
 
@@ -22,13 +22,13 @@ function updateColor() {
 
 /** Update shownDays number after component has been mounted */
 const cellsElement = ref(null)
-const { width } = useElementSize(cellsElement)
+const {width} = useElementSize(cellsElement)
 onMounted(() => {
   if (width) habbitsStore.shownDays = ref(Math.floor(width.value / 40))
 })
 
 /** Update shownDays number when .habbit_cells width changes */
-function onResize({ width, height }) {
+function onResize({width, height}) {
   const days = ref(Math.floor(width / 40))
   if (days.value) habbitsStore.shownDays = days.value
 }
@@ -45,8 +45,16 @@ const selectedDay = computed(() => {
 <template>
   <div class="habbit">
     <div class="habbit__title">
-      <input class="habbit__color" @input="updateColor" type="color" v-model="inputColor" />
-      <RouterLink class="habbit__name" :to="{ name: 'HabbitView', params: { id: habbit.id } }">
+      <input
+        class="habbit__color"
+        @input="updateColor"
+        type="color"
+        v-model="inputColor"
+      />
+      <RouterLink
+        class="habbit__name"
+        :to="{name: 'HabbitView', params: {id: habbit.id}}"
+      >
         {{ habbit.name }}
       </RouterLink>
     </div>
@@ -66,7 +74,12 @@ const selectedDay = computed(() => {
         {{ icons[day.isMarked] }}
       </button>
     </div>
-    <div v-else class="habbit__cells" ref="cellsElement" v-element-size="onResize">
+    <div
+      v-else
+      class="habbit__cells"
+      ref="cellsElement"
+      v-element-size="onResize"
+    >
       <button
         @click="selectedDay.isMarked = !selectedDay.isMarked"
         class="habbit__cell"

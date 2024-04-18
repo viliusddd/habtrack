@@ -1,5 +1,5 @@
-import { defineStore } from 'pinia'
-import { computed, watch, ref } from 'vue'
+import {defineStore} from 'pinia'
+import {computed, watch, ref} from 'vue'
 
 export const useHabbitsStore = defineStore('HabbitsStore', () => {
   const habbits = ref([])
@@ -44,7 +44,7 @@ export const useHabbitsStore = defineStore('HabbitsStore', () => {
     newValue => {
       localStorage.setItem(key, JSON.stringify(newValue))
     },
-    { deep: true }
+    {deep: true}
   )
 
   const newId = computed(() => {
@@ -74,5 +74,14 @@ export const useHabbitsStore = defineStore('HabbitsStore', () => {
     return arr
   }
 
-  return { habbits, addHabbit, fill, newId, numOfDays, shownDays, arrayOfDates, message }
+  return {
+    habbits,
+    addHabbit,
+    fill,
+    newId,
+    numOfDays,
+    shownDays,
+    arrayOfDates,
+    message
+  }
 })

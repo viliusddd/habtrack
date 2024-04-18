@@ -1,8 +1,8 @@
 <script setup>
-import { computed, ref } from 'vue'
-import { useHabbitsStore } from '@/stores/HabbitsStore'
-import { useRouter } from 'vue-router'
-import { onClickOutside } from '@vueuse/core'
+import {computed, ref} from 'vue'
+import {useHabbitsStore} from '@/stores/HabbitsStore'
+import {useRouter} from 'vue-router'
+import {onClickOutside} from '@vueuse/core'
 
 const habbitStore = useHabbitsStore()
 
@@ -15,7 +15,9 @@ const modalRef = ref(null)
 
 const target = ref(null)
 
-const currentHabbit = computed(() => habbitStore.habbits.find(hab => hab.id === props.id))
+const currentHabbit = computed(() => {
+  return habbitStore.habbits.find(hab => hab.id === props.id)
+})
 
 onClickOutside(target, event => console.log(event))
 
@@ -35,12 +37,24 @@ function deleteHabbit() {
 <template>
   <div v-if="currentHabbit" ref="target" class="modal">
     <button @click="$router.back" class="modal__close-btn">x</button>
-    <label class="modal__name-label" for="change-name">Change the name of the habit: </label>
-    <input class="modal__name" v-model="currentHabbit.name" id="change-name" autocomplete="off" />
+    <label class="modal__name-label" for="change-name"
+      >Change the name of the habit:
+    </label>
+    <input
+      class="modal__name"
+      v-model="currentHabbit.name"
+      id="change-name"
+      autocomplete="off"
+    />
     <br />
 
     <div class="delete">
       <button class="delete__btn" @click="deleteHabbit">Delete habbit</button>
+      <div class="delete__question">Are you sure?</div>
+      <div>
+        <button class="delete__btn-yes">yes</button>
+        <button class="delete__btn-no">no</button>
+      </div>
     </div>
   </div>
 </template>
@@ -119,8 +133,38 @@ function deleteHabbit() {
   padding: 0 10px 8px 10px;
 }
 .delete {
+  display: flex;
   margin-bottom: 0;
   margin-top: auto;
   padding: 0 0 0 10px;
+  row-gap: 5px;
+}
+.delete__btn {
+  margin: 0 auto 0 0;
+}
+.delete__question {
+  margin: 0 5px;
+}
+.delete > div {
+  gap: 5px;
+}
+.delete__btn-yes {
+  color: red;
+}
+.delete__btn-no {
+}
+button {
+  background: transparent;
+  border: none;
+  outline: 0;
+  color: inherit;
+  cursor: pointer;
+  line-height: 12px;
+}
+button:hover {
+  display: inline-block;
+  border-bottom: 2px solid;
+  border-bottom-style: solid;
+  /* text-decoration: underline; */
 }
 </style>

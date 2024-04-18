@@ -1,9 +1,10 @@
 <script setup>
-import { useHabbitsStore } from '@/stores/HabbitsStore'
+import {useHabbitsStore} from '@/stores/HabbitsStore'
 
 const habbitsStore = useHabbitsStore()
 
-const toWeekDay = dateObj => dateObj.toLocaleDateString('us', { weekday: 'short' })
+const toWeekDay = dateObj =>
+  dateObj.toLocaleDateString('us', {weekday: 'short'})
 const toMonthDay = dateObj => dateObj.getDate()
 </script>
 
@@ -14,9 +15,12 @@ const toMonthDay = dateObj => dateObj.getDate()
     <nav class="days__panel">
       <RouterLink
         class="day"
-        v-for="(day, index) in habbitsStore.arrayOfDates.slice(0, habbitsStore.shownDays)"
+        v-for="(day, index) in habbitsStore.arrayOfDates.slice(
+          0,
+          habbitsStore.shownDays
+        )"
         :key="index"
-        :to="{ name: 'DayView', params: { date: day.toLocaleDateString('lt') } }"
+        :to="{name: 'DayView', params: {date: day.toLocaleDateString('lt')}}"
       >
         <div class="day__week-day">{{ toWeekDay(day) }}</div>
         <div class="day__date">{{ toMonthDay(day) }}</div>
@@ -63,6 +67,10 @@ const toMonthDay = dateObj => dateObj.getDate()
   border: 0;
   color: grey;
   text-decoration: none;
+  line-height: 18px;
+}
+.day:hover {
+  border-bottom: 2px solid;
 }
 .day__date {
   display: flex;
@@ -76,5 +84,6 @@ const toMonthDay = dateObj => dateObj.getDate()
 }
 .active-day {
   border-bottom: 2px solid;
+  color: lightgray;
 }
 </style>
