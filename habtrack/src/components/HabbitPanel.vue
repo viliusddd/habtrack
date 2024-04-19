@@ -2,6 +2,7 @@
 import {defineProps, computed, ref} from 'vue'
 import {useHabbitsStore} from '@/stores/HabbitsStore'
 import {useRoute} from 'vue-router'
+import contenteditable from 'vue-contenteditable'
 
 const habbitsStore = useHabbitsStore()
 
@@ -22,9 +23,11 @@ const icons = {
   true: 'v',
   false: 'x'
 }
+
 const selectedDay = computed(() => {
   return props.habbit.days.find(day => day.date === useRoute().params.date)
 })
+
 function continueWithHabbit() {
   if (!habbitsStore.includeHidden && props.habbit.isHidden) {
     return false
@@ -69,11 +72,15 @@ function continueWithHabbit() {
       >
         {{ icons[selectedDay.isMarked] }}
       </button>
-      <textarea
+      <contenteditable
         class="habbit__comment"
-        placeholder="Add a comment"
+        tag="div"
+        data-text="Add your comment"
+        :contenteditable="true"
         v-model="selectedDay.comment"
-      ></textarea>
+        :no-nl="true"
+        :no-html="true"
+      />
     </div>
   </div>
 </template>
@@ -93,6 +100,42 @@ function continueWithHabbit() {
   min-width: 150px;
   width: 150px;
   height: 40px;
+}
+
+[contentEditable='true']:empty:not(:focus):before {
+  content: attr(data-text);
+  opacity: 45%;
+}
+
+.habbit__comment {
+  display: flex;
+  align-items: center;
+  border: 0;
+  padding: 0;
+  outline: none;
+  line-height: inherit;
+  background: transparent;
+  resize: none;
+  width: 100%;
+  color: v-bind(inputColor);
+  min-width: 120px;
+  word-break: break-word;
+  /* overflow: scroll; */
+  overflow: auto;
+  overflow-x: hidden;
+  scrollbar-color: black;
+}
+textarea {
+  border: 0;
+  padding: 0;
+  outline: none;
+
+  line-height: inherit;
+  background: transparent;
+  resize: none;
+  width: 100%;
+  color: v-bind(inputColor);
+  min-width: 120px;
 }
 input[type='color'] {
   border: none;
@@ -123,18 +166,6 @@ input[type='color']::-webkit-color-swatch {
   display: flex;
   flex-shrink: 0;
   cursor: pointer;
-}
-textarea {
-  border: 0;
-  padding: 0;
-  outline: none;
-
-  line-height: inherit;
-  background: transparent;
-  resize: none;
-  width: 100%;
-  color: v-bind(inputColor);
-  min-width: 120px;
 }
 .habbit__cells {
   display: flex;
