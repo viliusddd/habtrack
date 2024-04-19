@@ -25,50 +25,53 @@ const toMonthDay = dateObj => dateObj.getDate()
 </script>
 
 <template>
-  <div v-if="!habbitsStore.hideNavigation" class="header">
-    <RouterLink class="logo" to="/">habtrack</RouterLink>
-    <div class="hidden__toggle">
-      <label for="toggleShowHidden">Show hidden</label>
-      <input
-        type="checkbox"
-        name=""
-        id="toggleShowHidden"
-        v-model="habbitsStore.includeHidden"
-      />
+  <div class="navigation">
+    <div v-if="!habbitsStore.hideNavigation" class="header">
+      <RouterLink class="logo" to="/">habtrack</RouterLink>
+      <div class="hidden__toggle">
+        <label for="toggleShowHidden">Show hidden</label>
+        <input
+          type="checkbox"
+          name=""
+          id="toggleShowHidden"
+          v-model="habbitsStore.includeHidden"
+        />
+      </div>
     </div>
-  </div>
-  <div v-if="!habbitsStore.hideNavigation" class="days-container">
-    <div class="days__empty"></div>
-    <nav ref="cellsElement" v-element-size="onResize" class="days__panel">
-      <RouterLink
-        class="day"
-        v-for="(day, index) in habbitsStore.arrayOfDates.slice(
-          0,
-          habbitsStore.shownDays
-        )"
-        :key="index"
-        :to="{name: 'DayView', params: {date: day.toLocaleDateString('lt')}}"
-      >
-        <div class="day__week-day">{{ toWeekDay(day) }}</div>
-        <div class="day__date">{{ toMonthDay(day) }}</div>
-      </RouterLink>
-    </nav>
+    <div v-if="!habbitsStore.hideNavigation" class="days-container">
+      <div class="days__empty"></div>
+      <nav ref="cellsElement" v-element-size="onResize" class="days__panel">
+        <RouterLink
+          class="day"
+          v-for="(day, index) in habbitsStore.arrayOfDates.slice(
+            0,
+            habbitsStore.shownDays
+          )"
+          :key="index"
+          :to="{name: 'DayView', params: {date: day.toLocaleDateString('lt')}}"
+        >
+          <div class="day__week-day">{{ toWeekDay(day) }}</div>
+          <div class="day__date">{{ toMonthDay(day) }}</div>
+        </RouterLink>
+      </nav>
+    </div>
   </div>
 </template>
 <style>
 .header {
-  margin-top: 5px;
+  margin: 5px;
   display: flex;
   align-items: center;
 }
 .logo {
   font-size: 3ch;
+  margin-left: 5px;
 }
 .hidden__toggle {
   display: flex;
   align-items: center;
   column-gap: 3px;
-  margin: 0 0 0 auto;
+  margin: 0 5px 0 auto;
 }
 .logo:visited {
   color: gray;

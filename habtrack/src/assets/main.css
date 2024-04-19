@@ -13,6 +13,6 @@ input[type='checkbox'] {
 }
 
 #app {
-  max-width: 1280px;
-  margin: 0 5px;
+  max-width: 720px;
+  margin: 0px auto;
 }

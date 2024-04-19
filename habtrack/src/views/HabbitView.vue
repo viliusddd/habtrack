@@ -30,7 +30,7 @@ const closeModal = () => {
 </script>
 
 <template>
-  <div v-if="currentHabbit" ref="target" class="modal">
+  <div v-if="currentHabbit" class="modal" ref="target">
     <button @click="closeModal" class="modal__close-btn">x</button>
     <label class="modal__name-label" for="change-name"
       >Edit habbit name:
@@ -97,7 +97,8 @@ button:hover {
   transition-property: top;
   transition-duration: 900ms;
   height: 150px;
-  width: 392.705px;
+  width: 320px;
+  /* width: 392.705px; */
 }
 
 .modal:not(.open) {
@@ -145,7 +146,7 @@ button:hover {
   border: inherit;
   outline: none;
   color: inherit;
-  font-size: 40px;
+  font-size: 30px;
   border-radius: 2px;
   background: hsla(0, 0%, 100%, 0.02);
   box-shadow: inset 0 0 10px hsla(0, 0%, 0%, 0.397);

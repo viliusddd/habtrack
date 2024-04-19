@@ -8,8 +8,14 @@ habbitsStore.fill()
 </script>
 
 <template>
-  <NavPanel />
+  <NavPanel class="navigation" />
   <div class="container">
     <router-view></router-view>
   </div>
 </template>
+
+<style scoped>
+.container {
+  margin: 0 5px;
+}
+</style>

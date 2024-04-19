@@ -85,6 +85,8 @@ function continueWithHabbit() {
   flex: 1;
   justify-content: space-between;
   border: 1px solid gray;
+  border-radius: 8px;
+  overflow: hidden;
 }
 .habbit__title {
   display: flex;
