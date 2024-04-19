@@ -92,7 +92,6 @@ function isValidInput() {
   align-items: center;
   width: 20px;
   flex-shrink: 0;
-  /* border: 1px solid yellow; */
   background: transparent;
   color: lightgray;
   border: 0;

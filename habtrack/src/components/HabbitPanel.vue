@@ -84,8 +84,8 @@ function continueWithHabbit() {
   align-items: center;
   flex: 1;
   justify-content: space-between;
-  border: 1px solid gray;
-  border-radius: 8px;
+  border: 1px solid lightgray;
+  border-radius: 1px;
   overflow: hidden;
 }
 .habbit__title {
@@ -113,10 +113,10 @@ input[type='color']::-webkit-color-swatch {
   justify-content: center;
   align-items: center;
   color: v-bind(inputColor);
-  word-break: break-word; /* break-all alternative */
+  word-break: break-word;
 }
 .habbit__name:link {
-  color: gray;
+  color: lightgray;
   text-decoration: none;
 }
 .habbit__color {
@@ -152,7 +152,7 @@ textarea {
   cursor: pointer;
   background: transparent;
   border: 0;
-  color: grey;
+  color: lightgray;
 }
 .underline:link {
   text-decoration: green wavy underline;

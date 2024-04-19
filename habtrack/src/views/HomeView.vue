@@ -40,7 +40,6 @@ header {
 }
 .bottom-container {
   display: flex;
-  /* border: 1px solid yellow; */
   height: 40px;
 }
 .message-panel {
@@ -50,6 +49,5 @@ header {
   flex-grow: 1;
   padding: 0 5px;
   text-align: center;
-  /* border: 1px solid red; */
 }
 </style>

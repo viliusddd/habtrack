@@ -74,10 +74,10 @@ const toMonthDay = dateObj => dateObj.getDate()
   margin: 0 5px 0 auto;
 }
 .logo:visited {
-  color: gray;
+  color: white;
 }
 .logo:link {
-  color: gray;
+  color: white;
   text-decoration: none;
   border-bottom: 2px solid;
   border: 0;
@@ -89,7 +89,6 @@ const toMonthDay = dateObj => dateObj.getDate()
 }
 .days__empty {
   display: flex;
-  /* min-width: 150px; */
   min-width: 120px;
   width: 150px;
 }
@@ -100,14 +99,13 @@ const toMonthDay = dateObj => dateObj.getDate()
 }
 .day {
   display: flex;
-  /* justify-content: center; */
   align-items: center;
   flex-direction: column;
   width: 40px;
   cursor: pointer;
   background: transparent;
   border: 0;
-  color: grey;
+  color: lightgray;
   text-decoration: none;
   line-height: 18px;
   border-bottom: 2px solid;
@@ -128,6 +126,6 @@ const toMonthDay = dateObj => dateObj.getDate()
 }
 .active-day {
   border-bottom: 2px solid;
-  color: lightgray;
+  color: white;
 }
 </style>

@@ -91,14 +91,12 @@ button:hover {
   transform: translate(-50%, -50%);
   margin: 0;
   padding: 5px 10px 20px;
-  /* width: 55vw; */
   height: 40%;
   border-radius: 6px;
   transition-property: top;
   transition-duration: 900ms;
   height: 150px;
   width: 320px;
-  /* width: 392.705px; */
 }
 
 .modal:not(.open) {
