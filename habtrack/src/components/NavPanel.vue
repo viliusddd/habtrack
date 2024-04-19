@@ -104,7 +104,6 @@ const toMonthDay = dateObj => dateObj.getDate()
   align-items: center;
   flex-direction: column;
   width: 40px;
-  /* height: 40px; */
   cursor: pointer;
   background: transparent;
   border: 0;
