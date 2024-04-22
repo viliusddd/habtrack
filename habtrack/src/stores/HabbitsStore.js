@@ -19,7 +19,6 @@ export const useHabbitsStore = defineStore('HabbitsStore', () => {
 
   function addHabbit(data) {
     habbits.value.push(data)
-    console.log(data)
   }
 
   function addMissingMarks() {

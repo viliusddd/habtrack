@@ -46,7 +46,6 @@ function submitNewHabbit() {
     habbitsStore.message = 'No special characters are allowed in habbit name.'
   } else {
     habbitsStore.addHabbit(newHabbitTemplate.value)
-    console.log(newHabbitTemplate.value.days)
     inputValue.value = ''
     habbitsStore.message = ''
   }
@@ -93,7 +92,7 @@ function isValidInput() {
   width: 20px;
   flex-shrink: 0;
   background: transparent;
-  color: lightgray;
+  color: var(--text-color);
   border: 0;
   padding: 0;
   cursor: pointer;
@@ -103,7 +102,7 @@ function isValidInput() {
   align-items: center;
   width: 150px;
   background: transparent;
-  color: lightgray;
+  color: var(--text-color);
   border: 0;
   padding: 0;
   outline: 0;

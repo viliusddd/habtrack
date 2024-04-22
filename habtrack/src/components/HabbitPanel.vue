@@ -13,12 +13,6 @@ const props = defineProps({
 const inputColor = ref('')
 inputColor.value = props.habbit.color
 
-function updateColor() {
-  for (let habbit of habbitsStore.habbits) {
-    if (habbit.id === props.habbit.id) habbit.color = inputColor
-  }
-}
-
 const icons = {
   true: inputColor.value,
   false: 'transparent'
@@ -40,12 +34,7 @@ function continueWithHabbit() {
 <template>
   <div v-if="continueWithHabbit()" class="habbit">
     <div class="habbit__title">
-      <input
-        class="habbit__color"
-        @input="updateColor"
-        type="color"
-        v-model="inputColor"
-      />
+      <input class="habbit__color" type="color" v-model="inputColor" />
       <RouterLink
         :class="habbit.isHidden ? 'underline habbit__name' : 'habbit__name'"
         :to="{name: 'HabbitView', params: {id: habbit.id}}"
@@ -63,6 +52,7 @@ function continueWithHabbit() {
       >
         <svg width="20" height="20">
           <circle
+            class="circle"
             cx="10"
             cy="10"
             r="7"
@@ -81,6 +71,7 @@ function continueWithHabbit() {
       >
         <svg width="20" height="20">
           <circle
+            class="circle"
             cx="10"
             cy="10"
             r="7"
@@ -109,7 +100,7 @@ function continueWithHabbit() {
   align-items: center;
   flex: 1;
   justify-content: space-between;
-  border: 1px solid lightgray;
+  border: 1px solid var(--text-color);
   border-radius: 1px;
   overflow: hidden;
 }
@@ -118,6 +109,10 @@ function continueWithHabbit() {
   min-width: 150px;
   width: 150px;
   height: 40px;
+}
+
+.circle {
+  stroke: var(--circle-color);
 }
 
 [contentEditable='true']:empty:not(:focus):before {
@@ -177,7 +172,7 @@ input[type='color']::-webkit-color-swatch {
   word-break: break-word;
 }
 .habbit__name:link {
-  color: lightgray;
+  color: var(--text-color);
   text-decoration: none;
 }
 .habbit__color {
@@ -201,7 +196,7 @@ input[type='color']::-webkit-color-swatch {
   cursor: pointer;
   background: transparent;
   border: 0;
-  color: lightgray;
+  color: var(--text-color);
 }
 .underline:link {
   text-decoration: green wavy underline;

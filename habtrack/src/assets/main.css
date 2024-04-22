@@ -8,12 +8,28 @@
   color: lightgray;
 }
 
+:root {
+  --text-color: white;
+  --circle-color: lightgray;
+  --inactive-color: rgb(52, 52, 52);
+}
+
 input[type='checkbox'] {
-  accent-color: gray;
+  accent-color: var(--text-color);
   cursor: pointer;
 }
 
 #app {
   max-width: 720px;
   margin: 0px auto;
+}
+@media (prefers-color-scheme: light) {
+  * {
+    color: var(--text-color);
+  }
+  :root {
+    --circle-color: black;
+    --text-color: black;
+    --inactive-color: #dcdcdc;
+  }
 }

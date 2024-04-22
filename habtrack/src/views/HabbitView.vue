@@ -84,7 +84,7 @@ button:hover {
   display: flex;
   flex-direction: column;
   z-index: 99;
-  background: rgba(255, 255, 255, 0.059);
+  background: var(--inactive-color);
   position: fixed;
   top: 50%;
   left: 50%;

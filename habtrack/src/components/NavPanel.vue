@@ -74,10 +74,10 @@ const toMonthDay = dateObj => dateObj.getDate()
   margin: 0 5px 0 auto;
 }
 .logo:visited {
-  color: white;
+  color: var(--text-color);
 }
 .logo:link {
-  color: white;
+  color: var(--text-color);
   text-decoration: none;
   border-bottom: 2px solid;
   border: 0;
@@ -105,7 +105,7 @@ const toMonthDay = dateObj => dateObj.getDate()
   cursor: pointer;
   background: transparent;
   border: 0;
-  color: lightgray;
+  color: var(--inactive-color);
   text-decoration: none;
   line-height: 18px;
   border-bottom: 2px solid;
@@ -126,6 +126,6 @@ const toMonthDay = dateObj => dateObj.getDate()
 }
 .active-day {
   border-bottom: 2px solid;
-  color: white;
+  color: var(--text-color);
 }
 </style>
