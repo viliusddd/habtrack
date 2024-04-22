@@ -20,8 +20,8 @@ function updateColor() {
 }
 
 const icons = {
-  true: 'v',
-  false: 'x'
+  true: inputColor.value,
+  false: 'transparent'
 }
 
 const selectedDay = computed(() => {
@@ -61,7 +61,16 @@ function continueWithHabbit() {
         class="habbit__cell"
         :class="day.isMarked == true ? 'marked' : ''"
       >
-        {{ icons[day.isMarked] }}
+        <svg width="20" height="20">
+          <circle
+            cx="10"
+            cy="10"
+            r="7"
+            stroke="white"
+            stroke-width="1"
+            :fill="icons[day.isMarked]"
+          />
+        </svg>
       </button>
     </div>
     <div v-else class="habbit__cells">
@@ -70,7 +79,16 @@ function continueWithHabbit() {
         class="habbit__cell"
         :class="selectedDay.isMarked == true ? 'marked' : ''"
       >
-        {{ icons[selectedDay.isMarked] }}
+        <svg width="20" height="20">
+          <circle
+            cx="10"
+            cy="10"
+            r="7"
+            stroke="white"
+            stroke-width="1"
+            :fill="icons[selectedDay.isMarked]"
+          />
+        </svg>
       </button>
       <contenteditable
         class="habbit__comment"
