@@ -14,7 +14,7 @@ onMounted(() => {
 })
 
 /** Update shownDays number when .habbit_cells width changes */
-function onResize({width, height}) {
+function onResize({width}) {
   const days = ref(Math.floor(width / 40))
   if (days.value) habbitsStore.shownDays = days.value
 }
